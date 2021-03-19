@@ -26,6 +26,7 @@ router.get('/list', async (req,res) =>
     try
     {
         const MenuDb = await menulist.find();
+        console.log(__dirname);
         res.send(MenuDb);
     }
     catch (err)
@@ -44,7 +45,7 @@ router.post('/add',upload.single('image'), async (req,res) =>
         const newMenu = new menulist({
             itemname: req.body.itemname,
             image:{
-                data: fs.readFileSync('D:/Education/Seneca/Winter 2021/Capstone Project/Coding/project-backend/uploads/' + req.file.filename),
+                data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
                 contentType: 'image/png'
             },
             location: req.body.location,
