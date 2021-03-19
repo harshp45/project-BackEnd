@@ -1,0 +1,4 @@
+{
+    "mongoDBConnectURI": "mongodb+srv://Project:Project@123@harshdb.cm0lx.mongodb.net/Homestyle_dishes?retryWrites=true&w=majority",
+    "jwtsecret": "secret"
+}
