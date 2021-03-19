@@ -104,7 +104,20 @@ router.post('/login', async (req, res) => {
          }
 
     }
-
 });
+
+router.get('/token', async (req,res) => {
+    try
+    {
+        const tokenDb = await tokenModel.findOne();
+        res.send(tokenDb);
+
+    }
+    catch (err)
+    {
+        res.status(500).send('Server Error');
+    }
+});
+
 
 module.exports = router;
