@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 
 const userslist = require('../../models/User');
+const tokenModel = require('../../models/token');
 
 
 
@@ -83,7 +84,25 @@ router.post('/login', async (req, res) => {
                 expiresIn: 30000});
 
         console.log("Successfully Logged In");
-        res.send("Successfully Logged In. Token = " + JSON.stringify(token));
+        res.send(loginuser);
+        // res.send("Successfully Logged In. Token = " + JSON.stringify(token));
+
+         //Updating Token
+         try 
+         {
+             var tokenResponse = token;
+             console.log("Res: "+tokenResponse);
+             const newtoken = await tokenModel.findById("60550d40a983b881121c33a1");
+ 
+             newtoken.token = tokenResponse;
+ 
+             const nToken = await newtoken.save();
+             
+         }
+         catch (err) {
+             res.status(500).send('Server Error');
+         }
+
     }
 
 });
