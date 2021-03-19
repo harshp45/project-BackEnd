@@ -25,7 +25,7 @@ router.get('/list', async (req,res) =>
 {
     try
     {
-        const MenuDb = await menulist.findOne({ location: req.body.location });
+        const MenuDb = await menulist.find();
         res.send(MenuDb);
     }
     catch (err)
