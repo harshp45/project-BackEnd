@@ -2,9 +2,21 @@ const express = require('express');
 
 let orderlist = require('../../models/Order');
 
+var nodemailer = require('nodemailer');
+
 const auth = require('../../middleware/auth');
 
 const router = express.Router();
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'patelharsh235027@gmail.com',
+      pass: 'Harsh@1234'
+    }
+  });
+
+  
 
 //Fetching orders Data from MongoDB
 router.get('/list', auth, async (req,res) => 
@@ -38,6 +50,25 @@ router.post('/add', auth, async (req,res) => {
 
         const nOrder = await newOrder.save();
         res.send(nOrder);
+
+        var mailOptions = {
+            from: 'patelharsh235027@gmail.com',
+            to: 'harshpatel235027@gmail.com',
+            subject: 'Sending Email using Node.js',
+            text: 'Order Confirmed'
+          };
+
+        //Mailing Service
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) 
+            {
+              console.log(error);
+            } else 
+            {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
         res.end(); 
     }
       

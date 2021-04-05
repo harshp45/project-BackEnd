@@ -1,27 +1,36 @@
 const express = require('express');
+const app = express();
 var fs = require('fs');
 var path = require('path');
 
 let menulist = require('../../models/Menu');
+
+const auth = require('../../middleware/auth');
 
 const router = express.Router();
 
 //set up multer for storing uploaded files
 var multer = require('multer');
  
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
  
-var upload = multer({ storage: storage });
+
+// create storage properties
+const storage = multer.diskStorage({
+    destination: "./public/photos/",
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+})
+// set the upload location 
+const upload = multer({ storage: storage });
+
+ 
+
+// add static to the photos upload folder
+app.use(express.static("public"));
 
 //list menu based on location
-router.get('/list', async (req,res) => 
+router.get('/list', auth, async (req,res) => 
 {
     try
     {
@@ -36,20 +45,18 @@ router.get('/list', async (req,res) =>
 
 
 //Adding the data using POSTMAN
-router.post('/add',upload.single('image'), async (req,res) => 
+router.post('/add', upload.single('image'), auth, async (req,res) => 
 {
     try
     {
         console.log(req.body);
         const newMenu = new menulist({
             itemname: req.body.itemname,
-            image:{
-                data: fs.readFileSync('D:/Education/Seneca/Winter 2021/Capstone Project/Coding/project-backend/uploads/' + req.file.filename),
-                contentType: 'image/png'
-            },
+            image:path.join(__dirname,'..','..','public','photos',req.file.filename),
             location: req.body.location,
             price: req.body.price,
-            sellername: req.body.sellername,
+            sellername: req.user.firstname,
+            sellerEmail: req.user.email,
             category: req.body.category
         });
 
@@ -67,7 +74,7 @@ router.post('/add',upload.single('image'), async (req,res) =>
 
 
 //deleting the record using "/:id"
-router.delete('/delete', async (req,res) => 
+router.delete('/delete', auth, async (req,res) => 
 {
     try
     {
@@ -83,14 +90,14 @@ router.delete('/delete', async (req,res) =>
 
 
 //Update the record by ID using postman
-router.put('/update', async (req,res) => 
+router.put('/update',  upload.single('image'), auth, async (req,res) => 
 {
     try
     {
         const MenuDB = await menulist.findById(req.body.id);
            
             MenuDB.itemname = req.body.itemname,
-            MenuDB.image = req.body.image,
+            MenuDB.image = path.join(__dirname,'..','..','public','photos',req.file.filename),
             MenuDB.location = req.body.location,
             MenuDB.price = req.body.price,
             MenuDB.sellername = req.body.sellername,
