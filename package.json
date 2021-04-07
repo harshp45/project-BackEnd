@@ -11,7 +11,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.4.0",
-    "forever": "^2.0.0",
+    "forever": "^3.0.4",
     "http": "^0.0.0",
     "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest echo \"Error: no test specified\" && exit 1",
     "start": "npm i && node index.js"
   },
   "repository": {

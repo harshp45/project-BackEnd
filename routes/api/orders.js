@@ -23,7 +23,7 @@ router.get('/list', auth, async (req,res) =>
 {
     try
     {
-        const OrderDB = await orderlist.findOne();
+        const OrderDB = await orderlist.find();
         res.send(OrderDB);
     }
     catch (err)

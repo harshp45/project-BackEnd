@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 const config = require('config');
 
-const dbconn = config.get('mongoDBConnectURI');
+const dbconn = "mongodb+srv://Project:Project@123@harshdb.cm0lx.mongodb.net/Homestyle_dishes?retryWrites=true&w=majority";
 
 const connectDB = async () => {
     try
