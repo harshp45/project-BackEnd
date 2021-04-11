@@ -101,7 +101,7 @@ router.post('/login', async (req, res) => {
          }
 
         console.log(loginuser);
-        res.send(token);
+        res.json(token);
 
     }
 });
