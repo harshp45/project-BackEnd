@@ -88,7 +88,7 @@ router.post('/login', async (req, res) => {
          try 
          {
              var tokenResponse = token;
-             console.log("Res: "+tokenResponse);
+             console.log("Token = "+tokenResponse);
              const newtoken = await tokenModel.findById("60550d40a983b881121c33a1");
  
              newtoken.token = tokenResponse;
@@ -101,7 +101,7 @@ router.post('/login', async (req, res) => {
          }
 
         console.log(loginuser);
-        res.send("Successfully LoggedIn!! \nUser jwt-Token = "+(token));
+        res.send(token);
 
     }
 });
