@@ -82,7 +82,7 @@ router.post('/login', async (req, res) => {
                 algorithm: 'HS256',
                 expiresIn: 30000});
 
-        
+        const sendTk = {"token":token};
 
          //Updating Token
          try 
@@ -94,6 +94,8 @@ router.post('/login', async (req, res) => {
              newtoken.token = tokenResponse;
  
              const nToken = await newtoken.save();
+
+             
              
          }
          catch (err) {
@@ -101,7 +103,7 @@ router.post('/login', async (req, res) => {
          }
 
         console.log(loginuser);
-        res.json(token);
+        res.send(sendTk);
 
     }
 });
