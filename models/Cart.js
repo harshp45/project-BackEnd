@@ -11,7 +11,8 @@ const CartSchema = new mongoose.Schema({
     sellername: {type: String, required: true},
     sellerEmail: {type: String, required: true},
     category: {type: String, required: true},
-    quantity:{type: Number, required: true}
+    quantity:{type: Number, required: true},
+    user: {type: String, required: true}
 
 });
 
