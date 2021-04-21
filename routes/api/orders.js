@@ -40,9 +40,9 @@ router.post('/add', auth, async (req,res) => {
     {
         console.log(req.body);
         const newOrder = new orderlist({
-            customer: req.user.firstname,
+            customer: req.body.firstname,
             seller: req.body.seller,
-            customerAddress: req.user.address,
+            customerAddress: req.body.address,
             items: req.body.items,
             itemquantity: req.body.itemquantity,
             totalprice: req.body.totalprice
@@ -53,9 +53,9 @@ router.post('/add', auth, async (req,res) => {
 
         var mailOptions = {
             from: 'patelharsh235027@gmail.com',
-            to: 'harshpatel235027@gmail.com',
-            subject: 'Sending Email using Node.js',
-            text: 'Order Confirmed'
+            to: req.body.customerEmail,
+            subject: 'Order Confirmation Mail by Homestyle Delicacies',
+            html:"<h2>Order Confirmed!!!</h2>"
           };
 
         //Mailing Service
