@@ -8,13 +8,7 @@ const auth = require('../../middleware/auth');
 
 const router = express.Router();
 
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'patelharsh235027@gmail.com',
-      pass: 'Harsh@1234'
-    }
-  });
+
 
   
 
@@ -40,9 +34,12 @@ router.post('/add', auth, async (req,res) => {
     {
         console.log(req.body);
         const newOrder = new orderlist({
-            customer: req.body.firstname,
+            customer: req.body.customername,
+            customerEmail:req.body.customeremail,
+            customerAddress:req.body.customeraddress,
             seller: req.body.seller,
-            customerAddress: req.body.address,
+            sellerEmail: req.body.selleremail,
+            sellerLocation:req.body.sellerlocation,
             items: req.body.items,
             itemquantity: req.body.itemquantity,
             totalprice: req.body.totalprice
@@ -51,9 +48,17 @@ router.post('/add', auth, async (req,res) => {
         const nOrder = await newOrder.save();
         res.send(nOrder);
 
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'patelharsh235027@gmail.com',
+              pass: 'Harsh@1234'
+            }
+          });
+
         var mailOptions = {
-            from: 'patelharsh235027@gmail.com',
-            to: req.body.customerEmail,
+            from: req.body.selleremail,
+            to: req.body.customeremail,
             subject: 'Order Confirmation Mail by Homestyle Delicacies',
             html:"<h2>Order Confirmed!!!</h2>"
           };

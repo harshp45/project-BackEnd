@@ -21,6 +21,20 @@ router.get('/list', auth, async (req,res) =>
     }
 });
 
+//list Cart based on user
+router.post('/listbyuser', auth, async (req,res) => 
+{
+    try
+    {
+        const CartDb = await cartlist.find({user: req.body.email});
+        res.send(CartDb);   
+    }
+    catch (err)
+    {
+        res.status(500).send('Server Error');
+    }
+});
+
 
 //Adding the data using POSTMAN
 router.post('/add', auth, async (req,res) => 
