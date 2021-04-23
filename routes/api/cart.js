@@ -47,10 +47,7 @@ router.post('/add', auth, async (req,res) =>
             image: req.body.image,
             location: req.body.location,
             price: req.body.price,
-            sellername: req.body.sellername,
-            sellerEmail: req.body.sellerEmail,
             category: req.body.category,
-            quantity: req.body.quantity,
             user: req.body.user
         });
 

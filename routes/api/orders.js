@@ -37,8 +37,6 @@ router.post('/add', auth, async (req,res) => {
             customer: req.body.customername,
             customerEmail: req.body.customeremail,
             customerAddress: req.body.customeraddress,
-            seller: req.body.seller,
-            sellerEmail: req.body.selleremail,
             sellerLocation:req.body.sellerlocation,
             items: req.body.items,
             totalprice: req.body.totalprice
@@ -119,11 +117,11 @@ router.put('/update', auth, async (req,res) => {
     {
         const OrderDB = await menulist.findById(req.body.id);
            
-            OrderDB.customer = req.user.firstname,
-            OrderDB.seller = req.body.seller,
-            OrderDB.customerAddress = req.user.address,
+            OrderDB.customer = req.body.customername,
+            OrderDB.customerEmail = req.body.customeremail,
+            OrderDB.customerAddress = req.body.customeraddress,
+            OrderDB.sellerLocation = req.body.sellerlocation,
             OrderDB.items = req.body.items,
-            OrderDB.itemquantity = req.body.itemquantity,
             OrderDB.totalprice = req.body.totalprice
     
             const nOrder = await OrderDB.save();
