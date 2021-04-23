@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userslist = require('../../models/User');
-const tokenModel = require('../../models/token');
 
 
 
@@ -83,24 +82,6 @@ router.post('/login', async (req, res) => {
                 expiresIn: 30000});
 
         const sendTk = {"token":token};
-
-         //Updating Token
-         try 
-         {
-             var tokenResponse = token;
-             console.log("Token = "+tokenResponse);
-             const newtoken = await tokenModel.findById("60550d40a983b881121c33a1");
- 
-             newtoken.token = tokenResponse;
- 
-             const nToken = await newtoken.save();
-
-             
-             
-         }
-         catch (err) {
-             res.status(500).send('Server Error');
-         }
 
         console.log(loginuser);
         res.send(sendTk);

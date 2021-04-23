@@ -43,6 +43,20 @@ router.get('/list', auth, async (req,res) =>
     }
 });
 
+//list menu based on location
+router.post('/listbymenu', auth, async (req,res) => 
+{
+    try
+    {
+        const MenuDb = await menulist.find({location: req.body.location});
+        res.send(MenuDb);   
+    }
+    catch (err)
+    {
+        res.status(500).send('Server Error');
+    }
+});
+
 
 //Adding the data using POSTMAN
 router.post('/add', upload.single('image'), auth, async (req,res) => 
