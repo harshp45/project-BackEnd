@@ -70,8 +70,6 @@ router.post('/add', upload.single('image'), auth, async (req,res) =>
             // image:path.join(__dirname,'..','..','public','photos',req.file.filename),
             location: req.body.location,
             price: req.body.price,
-            sellername: req.user.firstname,
-            sellerEmail: req.user.email,
             category: req.body.category
         });
 
@@ -112,10 +110,9 @@ router.put('/update',  upload.single('image'), auth, async (req,res) =>
         const MenuDB = await menulist.findById(req.body.id);
            
             MenuDB.itemname = req.body.itemname,
-            MenuDB.image = path.join(__dirname,'..','..','public','photos',req.file.filename),
+            // MenuDB.image = path.join(__dirname,'..','..','public','photos',req.file.filename),
             MenuDB.location = req.body.location,
             MenuDB.price = req.body.price,
-            MenuDB.sellername = req.body.sellername,
             MenuDB.category = req.body.category
         
     

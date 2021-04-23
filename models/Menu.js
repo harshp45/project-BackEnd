@@ -8,8 +8,6 @@ const MenuSchema = new mongoose.Schema({
     image: {type: String, required: true},
     location: {type: String, required: true},
     price: {type: Number, required: true},
-    sellername: {type: String, required: true},
-    sellerEmail: {type: String, required: true},
     category: {type: String, required: true}
 
 });
