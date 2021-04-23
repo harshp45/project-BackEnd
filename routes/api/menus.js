@@ -67,7 +67,7 @@ router.post('/add', upload.single('image'), auth, async (req,res) =>
         const newMenu = new menulist({
             itemname: req.body.itemname,
             image:req.body.image,
-            // image:path.join(__dirname,'..','..','public','photos',req.file.filename),
+            image:req.file.filename,
             location: req.body.location,
             price: req.body.price,
             category: req.body.category
@@ -110,7 +110,7 @@ router.put('/update',  upload.single('image'), auth, async (req,res) =>
         const MenuDB = await menulist.findById(req.body.id);
            
             MenuDB.itemname = req.body.itemname,
-            // MenuDB.image = path.join(__dirname,'..','..','public','photos',req.file.filename),
+            MenuDB.image = req.file.filename,
             MenuDB.location = req.body.location,
             MenuDB.price = req.body.price,
             MenuDB.category = req.body.category
