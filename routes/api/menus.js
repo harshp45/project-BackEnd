@@ -59,7 +59,7 @@ router.post('/listbymenu', auth, async (req,res) =>
 
 
 //Adding the data using POSTMAN
-router.post('/add',  auth, async (req,res) => 
+router.post('/add', upload.single('image'), auth, async (req,res) => 
 {
     try
     {
