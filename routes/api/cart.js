@@ -69,7 +69,7 @@ router.delete('/delete', auth, async (req,res) =>
 {
     try
     {
-        const CartDB = await cartlist.findByIdAndRemove({ _id: req.body.id});
+        const CartDB = await cartlist.deleteMany({ user: req.body.email});
         
         res.send("Record Deleted: "+"\n"+JSON.stringify(CartDB)); 
     }
