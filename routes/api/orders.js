@@ -59,7 +59,7 @@ router.post('/add', auth, async (req,res) => {
             html:`<h1>Homestyle Delicacies</h1>
             <h3>Thanks for ordering, ${req.body.customername}</h3>
             <p>This is an auto generated response to your placed order.</p>
-            <p>Please do not reply to this email.</p>
+            <p>Please reply to this email with proper explanation if you didn't place this order</p>
             <hr/>
             <p>Here's your receipt for the order.</p><br>
             <h1>Total: CA$${req.body.totalprice}</h1>
