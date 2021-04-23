@@ -63,8 +63,23 @@ router.post('/add', auth, async (req,res) =>
 
 });
 
-
 //deleting the record using "/:id"
+router.delete('/delete', auth, async (req,res) => 
+{
+    try
+    {
+        const CartDB = await cartlist.findByIdAndDelete({ _id: req.body.id});
+        
+        res.send("Record Deleted: "+"\n"+JSON.stringify(CartDB)); 
+    }
+    catch (err)
+    {
+        res.status(500).send('Server Error');
+    }
+});
+
+
+//deleting the record of user cart
 router.delete('/delete', auth, async (req,res) => 
 {
     try
