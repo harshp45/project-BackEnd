@@ -80,7 +80,7 @@ router.delete('/delete', auth, async (req,res) =>
 
 
 //deleting the record of user cart
-router.delete('/delete', auth, async (req,res) => 
+router.delete('/deleteByUser', auth, async (req,res) => 
 {
     try
     {
