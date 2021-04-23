@@ -66,7 +66,6 @@ router.post('/add', upload.single('image'), auth, async (req,res) =>
         console.log(req.body);
         const newMenu = new menulist({
             itemname: req.body.itemname,
-            image:req.body.image,
             image:req.file.filename,
             location: req.body.location,
             price: req.body.price,
