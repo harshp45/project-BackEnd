@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
     const loginuser= await userslist.findOne({email:req.body.email});
     if(!loginuser)
     {
-       return res.send("No Such User Found");
+       return res.status(403).send("No Such User Found");
     }
     
     //checking password for login
@@ -62,7 +62,7 @@ router.post('/login', async (req, res) => {
     
     if(!Userpassword)
     {
-        return res.status(400).send("Incorrect Password");
+        return res.status(403).send("Incorrect Password");
 
     }
     else
