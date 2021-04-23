@@ -66,9 +66,9 @@ router.post('/add', auth, async (req,res) => {
             <hr/><br>
             <p>Order Items: </p><h3>${req.body.items}</h3>
             <hr/><br>
-            <h2>Your ordered from Homestyle Delicacies</h2><br>
+            <h2>Your order from Homestyle Delicacies</h2><br>
             <p><b>Delivery Address:</b></p>
-            <p>${req.body.customerAddress}</p><br>
+            <p>${req.body.customeraddress}</p><br>
             <p>Thank You,</p>
             <p><b>Homestyle Delicacies</b></p> `
           };
