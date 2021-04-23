@@ -35,13 +35,12 @@ router.post('/add', auth, async (req,res) => {
         console.log(req.body);
         const newOrder = new orderlist({
             customer: req.body.customername,
-            customerEmail:req.body.customeremail,
-            customerAddress:req.body.customeraddress,
+            customerEmail: req.body.customeremail,
+            customerAddress: req.body.customeraddress,
             seller: req.body.seller,
             sellerEmail: req.body.selleremail,
             sellerLocation:req.body.sellerlocation,
             items: req.body.items,
-            itemquantity: req.body.itemquantity,
             totalprice: req.body.totalprice
         });
 
@@ -60,7 +59,21 @@ router.post('/add', auth, async (req,res) => {
             from: req.body.selleremail,
             to: req.body.customeremail,
             subject: 'Order Confirmation Mail by Homestyle Delicacies',
-            html:"<h2>Order Confirmed!!!</h2>"
+            html:`<h1>Homestyle Delicacies</h1>
+            <h3>Thanks for ordering, ${req.body.customer}</h3>
+            <p>This is an auto generated response to your placed order.</p>
+            <p>Please do not reply to this email.</p>
+            <hr/>
+            <p>Here's your receipt for the order.</p><br>
+            <h1>Total: CA$${req.body.totalprice}</h1>
+            <hr/><br>
+            <p>Order Items: </p><h3>${req.body.items}</h3>
+            <hr/><br>
+            <h2>Your ordered from Homestyle Delicacies (${req.body.sellerLocation})</h2><br>
+            <p><b>Delivered to your registered address</b></p>
+            <p>${req.body.customerAddress}</p><br>
+            <p>Thank You,</p>
+            <p><b>Homestyle Delicacies</b></p> `
           };
 
         //Mailing Service

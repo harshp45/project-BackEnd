@@ -11,7 +11,6 @@ const OrderSchema = new mongoose.Schema({
     sellerEmail: {type: String, required: true},
     sellerLocation: {type: String, required: true},
     items: [String],
-    itemquantity: [Number],
     totalprice: {type: Number, required: true},
     date: { type: Date, default: Date.now }    
 });
