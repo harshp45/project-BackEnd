@@ -20,7 +20,6 @@ describe("GET /api/order/list", () => {
       expect(response.body[0]).toHaveProperty("customer");
       expect(response.body[0]).toHaveProperty("customeremail");
       expect(response.body[0]).toHaveProperty("customerAddress");
-      expect(response.body[0]).toHaveProperty("sellerlocation");
       expect(response.body[0]).toHaveProperty("totalprice");
       expect(response.statusCode).toBe(200);
     });
@@ -46,7 +45,6 @@ describe("GET /api/order/list", () => {
         customeremail:"david56@gmail.com",
         customerAddress: "Toronto",
         items: ["Punjabi","Noodles"],
-        sellerlocation:"Etobicoke",
         totalprice: 32
       });
       expect(response.statusCode).toBe(200);

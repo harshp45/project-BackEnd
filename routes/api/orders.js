@@ -37,7 +37,6 @@ router.post('/add', auth, async (req,res) => {
             customer: req.body.customername,
             customerEmail: req.body.customeremail,
             customerAddress: req.body.customeraddress,
-            sellerLocation:req.body.sellerlocation,
             items: req.body.items,
             totalprice: req.body.totalprice
         });
@@ -48,13 +47,13 @@ router.post('/add', auth, async (req,res) => {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'patelharsh235027@gmail.com',
-              pass: 'Harsh@1234'
+              user: 'noreplyhomestyle@gmail.com',
+              pass: 'Homestyle@123'
             }
           });
 
         var mailOptions = {
-            from: req.body.selleremail,
+            from: 'noreplyhomestyle@gmail.com',
             to: req.body.customeremail,
             subject: 'Order Confirmation Mail by Homestyle Delicacies',
             html:`<h1>Homestyle Delicacies</h1>
@@ -67,8 +66,8 @@ router.post('/add', auth, async (req,res) => {
             <hr/><br>
             <p>Order Items: </p><h3>${req.body.items}</h3>
             <hr/><br>
-            <h2>Your ordered from Homestyle Delicacies (${req.body.sellerLocation})</h2><br>
-            <p><b>Delivered to your registered address</b></p>
+            <h2>Your ordered from Homestyle Delicacies</h2><br>
+            <p><b>Delivery Address:</b></p>
             <p>${req.body.customerAddress}</p><br>
             <p>Thank You,</p>
             <p><b>Homestyle Delicacies</b></p> `
@@ -120,7 +119,6 @@ router.put('/update', auth, async (req,res) => {
             OrderDB.customer = req.body.customername,
             OrderDB.customerEmail = req.body.customeremail,
             OrderDB.customerAddress = req.body.customeraddress,
-            OrderDB.sellerLocation = req.body.sellerlocation,
             OrderDB.items = req.body.items,
             OrderDB.totalprice = req.body.totalprice
     
