@@ -57,7 +57,7 @@ router.post('/add', auth, async (req,res) => {
             to: req.body.customeremail,
             subject: 'Order Confirmation Mail by Homestyle Delicacies',
             html:`<h1>Homestyle Delicacies</h1>
-            <h3>Thanks for ordering, ${req.body.customer}</h3>
+            <h3>Thanks for ordering, ${req.body.customername}</h3>
             <p>This is an auto generated response to your placed order.</p>
             <p>Please do not reply to this email.</p>
             <hr/>
