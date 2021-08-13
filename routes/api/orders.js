@@ -48,7 +48,7 @@ router.post('/add', auth, async (req,res) => {
             service: 'gmail',
             auth: {
               user: 'noreplyhomestyle@gmail.com',
-              pass: 'Homestyle@123'
+              pass: 'Homefood@123'
             }
           });
 
