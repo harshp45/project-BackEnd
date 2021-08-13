@@ -55,22 +55,25 @@ router.post('/add', auth, async (req,res) => {
         var mailOptions = {
             from: 'noreplyhomestyle@gmail.com',
             to: req.body.customeremail,
-            subject: 'Order Confirmation Mail by Homestyle Delicacies',
-            html:`<h1>Homestyle Delicacies</h1>
+            subject: 'Order Confirmation Mail by Indian Cuisine',
+            html:`<h1>Indian Cuisine</h1>
             <h3>Thanks for ordering, ${req.body.customername}</h3>
             <p>This is an auto generated response to your placed order.</p>
             <p>Please do not reply to this email.</p>
             <hr/>
+            <p>Your order number is <b>F93DQA</b>, and is estimated to arrive in 45 mins.</p>
             <p>Here's your receipt for the order.</p><br>
             <h1>Total: CA$${req.body.totalprice}</h1>
             <hr/><br>
             <p>Order Items: </p><h3>${req.body.items}</h3>
             <hr/><br>
-            <h2>Your order from Homestyle Delicacies</h2><br>
+            <h2>Your order from Indian Cuisine</h2><br>
+            <p><b>Payment Method</b></p>
+            <p>You will be charged from the provided payment method after your order get delivered to you.</p><br>
             <p><b>Delivery Address:</b></p>
             <p>${req.body.customeraddress}</p><br>
             <p>Thank You,</p>
-            <p><b>Homestyle Delicacies</b></p> `
+            <p><b>Indian Cuisine</b></p> `
           };
 
         //Mailing Service
